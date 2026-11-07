@@ -1,222 +1,75 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#11120f">
-<title>ATELIER BÂTIMENT — L’architecture prend forme</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111310"><meta name="description" content="ATELIER BÂTIMENT — Construction, rénovation et architecture. De la première ligne au lieu de vie."><title>ATELIER BÂTIMENT — Construire autrement</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap');
-:root{--ink:#11120f;--paper:#e9e6de;--muted:#97978e;--gold:#c1a77e;--line:rgba(233,230,222,.17)}
-*{box-sizing:border-box}html{background:var(--ink);scroll-behavior:auto}body{margin:0;background:var(--ink);color:var(--paper);font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}
-::selection{background:var(--gold);color:#111}
-.site-header{position:absolute;z-index:20;top:0;left:0;width:100%;height:86px;padding:0 5.5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff24}
-.brand{display:flex;align-items:center;gap:12px}.brand-symbol{font:300 25px Manrope;letter-spacing:-3px}.brand-symbol b{color:var(--gold);font-weight:300}.brand-name{font-size:9px;letter-spacing:.2em}.brand-name strong{color:var(--gold);font-weight:500}
-.nav{display:flex;gap:36px}.nav a,.header-cta{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#e8e5ddc9;transition:color .25s}.nav a:hover,.header-cta:hover{color:var(--gold)}.header-cta{display:flex;gap:12px;align-items:center}
-.hero{height:112vh;min-height:760px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 75% 30%,#60645b 0,#292e29 38%,#121410 78%)}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#10120fe8 0%,#10120f9c 44%,#10120f20 100%),linear-gradient(0deg,#11120f 0%,transparent 40%)}
-.hero-art{position:absolute;right:-4%;top:12%;width:73%;height:78%;opacity:.9}
-.hero-art svg{width:100%;height:100%}
-.hero-content{position:absolute;z-index:2;left:10%;top:30%;max-width:760px}
-.eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
-.hero h1{font:300 clamp(58px,8vw,116px)/.96 Manrope,sans-serif;letter-spacing:-.075em;margin:30px 0 24px}
-.hero h1 em{font-style:normal;color:var(--gold)}
-.hero-copy{max-width:410px;color:#d1d0c7b8;font-size:13px;line-height:1.9}
-.hero-actions{display:flex;align-items:center;gap:28px;margin-top:36px}
-.primary-link{display:inline-flex;align-items:center;gap:26px;border:1px solid #c1a77e88;border-radius:40px;padding:15px 20px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;transition:.3s}
-.primary-link:hover{background:var(--gold);color:#171813}
-.text-link{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#d8d4ca}
-.hero-meta{position:absolute;z-index:2;bottom:34px;left:5.5%;right:5.5%;display:flex;justify-content:space-between;color:#ffffff80;font-size:8px;letter-spacing:.18em}
-.scroll-cue{display:flex;gap:12px;align-items:center}.scroll-cue span{width:34px;height:1px;background:var(--gold)}
-.intro{padding:150px 10vw 160px;display:grid;grid-template-columns:1fr 2.6fr;gap:7vw}
-.index{font-size:9px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
-.intro h2{font:300 clamp(43px,6.2vw,88px)/1.06 Manrope;letter-spacing:-.07em;margin:0}
-.intro h2 span{color:#777970}.intro-note{max-width:430px;margin:42px 0 0 auto;color:var(--muted);font-size:12px;line-height:2}
-.build-section{height:520vh;position:relative;background:#181a16}
-.build-stage{height:100svh;min-height:650px;position:sticky;top:0;overflow:hidden;background:linear-gradient(180deg,#343b3a 0%,#777b70 55%,#353b30 100%)}
-.build-stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(12,14,12,.88) 0%,rgba(12,14,12,.45) 42%,transparent 78%),linear-gradient(0deg,rgba(12,14,12,.65),transparent 30%)}
-.build-sky{position:absolute;inset:0;background:radial-gradient(ellipse at 72% 22%,#c4b9a3 0,#8b9085 20%,transparent 48%);opacity:.7}
-.build-land{position:absolute;left:-10%;right:-10%;bottom:-3%;height:44%;background:linear-gradient(170deg,#65705c,#303a2d 70%);clip-path:polygon(0 28%,18% 13%,40% 24%,63% 8%,82% 22%,100% 10%,100% 100%,0 100%)}
-.build-grid{position:absolute;inset:0;opacity:.12;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:9vw 9vw;mask-image:linear-gradient(90deg,transparent,#000 60%)}
-.build-top{position:absolute;z-index:4;top:34px;left:5.5%;right:5.5%;display:flex;justify-content:space-between;color:#e4d7c0;font-size:8px;letter-spacing:.2em}
-.build-copy{position:absolute;z-index:5;left:8.5%;top:22%;width:34%;max-width:440px}
-.build-copy h2{font:300 clamp(42px,5.4vw,76px)/1.02 Manrope;letter-spacing:-.07em;margin:24px 0 20px}
-.build-copy h2 em{font-style:normal;color:var(--gold)}
-.build-copy p{font-size:12px;line-height:1.9;color:#e0dfd4b8;max-width:330px;min-height:68px}
-.build-counter{display:flex;align-items:baseline;gap:8px;margin-top:34px;font-size:10px;color:#d7d3c9}
-.build-counter strong{font:300 32px Manrope;color:var(--gold)}
-.build-visual{position:absolute;z-index:2;right:0;top:9%;width:69%;height:82%;display:flex;align-items:center;justify-content:center}
-.build-visual svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 24px 30px #0005)}
-.house-part{opacity:0;transition:opacity .15s linear}
-.house-outline{fill:none;stroke:#f0e8d8;stroke-width:2;stroke-dasharray:7 8;opacity:.25}
-.foundation{fill:#b8ae9c;stroke:#e3d7c5;stroke-width:2}
-.concrete{fill:url(#concrete);stroke:#d8cebd;stroke-width:2}
-.wall-front{fill:url(#wallFront);stroke:#d8d0c2;stroke-width:2}
-.wall-side{fill:#85877f;stroke:#c8c1b4;stroke-width:2}
-.roof{fill:#303834;stroke:#9c9d92;stroke-width:2}
-.glass{fill:url(#glass);stroke:#e1d9cb;stroke-width:4}
-.frame{fill:none;stroke:#e7dfd0;stroke-width:5}
-.garden{fill:#26372b}.path{fill:#b8aa91;opacity:.9}
-.build-label{position:absolute;z-index:4;right:5.5%;bottom:16%;font-size:8px;letter-spacing:.2em;color:#ffffff99;writing-mode:vertical-rl}
-.build-controls{position:absolute;z-index:6;bottom:34px;left:5.5%;right:5.5%;display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
-.progress-track{height:2px;background:#ffffff45;position:relative}.progress-fill{height:100%;width:0;background:var(--gold)}
-.step-dots{display:flex;gap:9px}.step-dots i{width:5px;height:5px;border-radius:50%;background:#ffffff55}.step-dots i.active{background:var(--gold);transform:scale(1.5)}
-.scroll-label{text-align:right;font-size:8px;letter-spacing:.17em;color:#ffffffa0}
-.after-build{padding:150px 10vw 160px;background:#11120f;display:grid;grid-template-columns:1fr 2fr;gap:7vw}
-.after-build h2{font:300 clamp(44px,6vw,82px)/1.02 Manrope;letter-spacing:-.07em;margin:0}
-.after-build h2 em{font-style:normal;color:var(--gold)}
-.after-build p{max-width:450px;color:var(--muted);font-size:12px;line-height:2;margin-top:28px}
-.services{padding:130px 10vw}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:60px}.section-head h2{font:300 clamp(45px,6vw,82px)/1 Manrope;letter-spacing:-.07em;margin:25px 0 0}.section-head h2 em{font-style:normal;color:var(--gold)}
-.service{display:grid;grid-template-columns:60px 1fr 1fr 20px;gap:25px;align-items:center;border-top:1px solid var(--line);padding:28px 0}.service:last-child{border-bottom:1px solid var(--line)}.service small{color:var(--gold);font-size:9px}.service h3{font:300 28px Manrope;margin:0}.service p{max-width:360px;color:var(--muted);font-size:11px;line-height:1.8}.service b{color:var(--gold);font-weight:400}
-.contact{margin:80px 7vw 120px;padding:75px 7%;background:#1c1e19;border:1px solid #ffffff12;display:flex;justify-content:space-between;align-items:end;gap:50px}
-.contact h2{font:300 clamp(55px,7vw,96px)/.96 Manrope;letter-spacing:-.07em;margin:28px 0 0}.contact h2 em{font-style:normal;color:var(--gold)}.contact p{max-width:350px;color:var(--muted);font-size:12px;line-height:1.9}.contact a{display:inline-flex;align-items:center;gap:24px;border-bottom:1px solid var(--gold);padding:17px 0;font-size:9px;letter-spacing:.16em;text-transform:uppercase}
-footer{padding:30px 5.5%;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#777970;font-size:8px;letter-spacing:.15em}
-@media(max-width:760px){
- .site-header{height:70px;padding:0 22px}.nav{display:none}.header-cta{font-size:8px}
- .hero{min-height:730px;height:100svh}.hero-art{width:125%;height:55%;right:-28%;top:35%;opacity:.6}.hero-content{left:7%;right:7%;top:23%}.hero h1{font-size:clamp(53px,13vw,78px);margin:24px 0}.hero-copy{font-size:12px;max-width:320px}.hero-meta{left:7%;right:7%;bottom:22px}.hero-meta span:first-child{display:none}
- .intro{display:block;padding:105px 7%}.intro .index{margin-bottom:45px}.intro h2{font-size:clamp(42px,11vw,64px)}.intro-note{margin:30px 0 0}
- .build-section{height:480vh}.build-stage{min-height:640px}.build-top{top:22px;left:7%;right:7%;font-size:7px}.build-top span:last-child{display:none}
- .build-copy{left:7%;top:12%;width:86%;max-width:none}.build-copy h2{font-size:clamp(40px,10vw,57px);margin:15px 0}.build-copy p{font-size:10px;max-width:270px;min-height:55px}.build-counter{margin-top:12px}.build-counter strong{font-size:25px}
- .build-visual{width:115%;height:52%;right:-9%;top:38%}.build-label{right:5%;bottom:18%;font-size:7px}
- .build-controls{left:7%;right:7%;bottom:23px;grid-template-columns:1fr auto;gap:13px}.scroll-label{grid-column:1/-1;text-align:left}.step-dots{gap:7px}
- .after-build{display:block;padding:100px 7%}.after-build .index{margin-bottom:42px}.after-build h2{font-size:clamp(45px,11vw,66px)}
- .services{padding:90px 7%}.section-head{display:block}.section-head h2{font-size:55px}.service{grid-template-columns:28px 1fr 16px;gap:12px;padding:21px 0}.service h3{font-size:23px}.service p{grid-column:2;grid-row:2;margin:0}.service b{grid-column:3;grid-row:1}
- .contact{margin:50px 7% 80px;padding:45px 8%;display:block}.contact h2{font-size:65px}.contact p{margin-top:35px}footer{padding:25px 7%;gap:15px;flex-wrap:wrap}footer span:nth-child(2){display:none}
-}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-</style>
-</head>
+:root{--bg:#111310;--ink:#f1f0e9;--muted:#a5a69d;--line:rgba(241,240,233,.16);--gold:#c6a77a;--serif:Georgia,'Times New Roman',serif;--sans:'Manrope','DM Sans',sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}.topbar{position:fixed;z-index:30;top:0;left:0;width:100%;height:82px;padding:0 5.5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:.35s;background:linear-gradient(180deg,rgba(12,14,12,.55),transparent)}.topbar.scrolled{height:68px;background:rgba(17,19,16,.88);backdrop-filter:blur(18px);border-color:var(--line)}.brand{font-size:13px;letter-spacing:.22em;font-weight:700}.brand small{display:block;font-size:8px;letter-spacing:.34em;color:var(--muted);font-weight:500;margin-top:5px}.nav{display:flex;gap:32px;align-items:center;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#deded6}.nav a{opacity:.8;transition:.2s}.nav a:hover{opacity:1;color:var(--gold)}.nav-cta{border:1px solid rgba(241,240,233,.45);border-radius:30px;padding:12px 19px}.menu{display:none;background:none;border:1px solid var(--line);border-radius:50%;width:42px;height:42px}.hero{height:100svh;min-height:700px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 7vw 8vh;background:radial-gradient(ellipse at 72% 42%,#586055 0%,#252b24 32%,#111310 72%)}.hero:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,14,12,.92) 0%,rgba(12,14,12,.55) 42%,rgba(12,14,12,.05) 100%),linear-gradient(0deg,rgba(12,14,12,.68),transparent 42%);z-index:2;pointer-events:none}.hero-grid{position:absolute;inset:0;opacity:.1;background-image:linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(90deg,transparent,#000 70%)}#hero3d{position:absolute;inset:0;z-index:1}#hero3d canvas{width:100%;height:100%;display:block}.hero-copy{position:relative;z-index:3;max-width:590px;padding-bottom:1vh;pointer-events:none}.eyebrow{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600}.hero h1{font-size:clamp(54px,7.7vw,112px);line-height:.98;letter-spacing:-.075em;font-weight:300;margin:28px 0 25px;max-width:680px}.hero h1 em{font-family:var(--serif);font-weight:400;color:#cdb18a;letter-spacing:-.06em}.hero p{max-width:390px;font-size:14px;line-height:1.9;color:#d0d0c8;margin:0}.hero-actions{display:flex;gap:14px;margin-top:34px;pointer-events:auto}.btn{display:inline-flex;align-items:center;gap:14px;padding:15px 21px;border:1px solid rgba(241,240,233,.45);border-radius:40px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;transition:.3s;background:transparent}.btn.primary{background:#eeeae0;color:#181a16;border-color:#eeeae0}.btn:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#171914}.hero-meta{position:absolute;z-index:3;right:5.5vw;bottom:8vh;writing-mode:vertical-rl;font-size:8px;letter-spacing:.3em;color:#d4d1c7}.scroll-note{position:absolute;z-index:3;bottom:28px;left:7vw;display:flex;align-items:center;gap:13px;font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:#c5c4bc}.scroll-note:before{content:'';width:48px;height:1px;background:var(--gold)}.section{padding:140px 7vw;position:relative}.section-kicker{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}.intro{display:grid;grid-template-columns:1fr 1fr;gap:10vw;align-items:end}.intro h2,.section-title{font-size:clamp(38px,5vw,72px);line-height:1.05;letter-spacing:-.065em;font-weight:300;margin:22px 0 0}.intro h2 em,.section-title em{font-family:var(--serif);font-weight:400;color:var(--gold)}.intro-copy{max-width:420px;color:var(--muted);font-size:14px;line-height:2}.intro-copy strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:16px;font-weight:500}.build-section{padding:0;min-height:470vh;position:relative;background:#151914}.build-sticky{height:100svh;min-height:650px;position:sticky;top:0;overflow:hidden;display:grid;grid-template-columns: minmax(300px, .8fr) 1.2fr;align-items:center;padding:90px 7vw 60px}.build-sticky:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(109,126,104,.25),transparent 48%),linear-gradient(90deg,#151914 0%,rgba(21,25,20,.82) 40%,rgba(21,25,20,.2) 100%)}.build-text{position:relative;z-index:3;max-width:400px}.build-text h2{font-size:clamp(42px,5vw,70px);font-weight:300;letter-spacing:-.07em;line-height:1.02;margin:24px 0}.build-text h2 em{font-family:var(--serif);color:var(--gold);font-weight:400}.build-text p{color:var(--muted);font-size:13px;line-height:1.9;max-width:330px}.stage-count{font-family:var(--serif);font-size:58px;color:var(--gold);margin-top:52px}.stage-count small{font-family:var(--sans);font-size:9px;color:#c4c4ba;letter-spacing:.2em;vertical-align:middle}.stage-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#d9d8cf;margin-top:8px}.stage-progress{width:230px;height:2px;background:#454a40;margin-top:35px}.stage-progress span{display:block;width:0;height:100%;background:var(--gold);transition:width .15s}.stage-dots{display:flex;gap:8px;margin-top:15px}.stage-dots i{width:5px;height:5px;border-radius:50%;background:#555b50}.stage-dots i.active{background:var(--gold);transform:scale(1.35)}.model-wrap{position:relative;z-index:2;height:min(78vh,760px);min-height:400px;touch-action:pan-y}#build3d{position:absolute;inset:0}#build3d canvas{width:100%;height:100%;display:block}.model-hint{position:absolute;bottom:18px;right:4px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#c7c5b8;opacity:.8}.build-steps{position:absolute;top:18px;right:0;display:flex;flex-direction:column;gap:10px;z-index:4}.build-steps span{font-size:8px;letter-spacing:.16em;color:#a5a69d;opacity:.35}.build-steps span.active{opacity:1;color:var(--gold)}.services{background:#e9e6dc;color:#1c201a}.services .section-kicker{color:#8f714a}.services-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:70px}.services .section-title{max-width:650px}.services-intro{max-width:300px;color:#77796f;font-size:13px;line-height:1.9}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(28,32,26,.22)}.service-card{padding:30px 26px 36px 0;border-right:1px solid rgba(28,32,26,.2);min-height:270px}.service-card:not(:first-child){padding-left:26px}.service-card:last-child{border:0}.service-no{font-family:var(--serif);font-size:34px;color:#9b805d}.service-card h3{font-size:20px;font-weight:500;letter-spacing:-.04em;margin:34px 0 13px}.service-card p{font-size:12px;line-height:1.9;color:#73766c;max-width:280px}.manifesto{display:grid;grid-template-columns:1fr 1fr;gap:10vw;align-items:center}.manifesto-visual{height:560px;position:relative;overflow:hidden;background:linear-gradient(145deg,#6e7568,#242a23 55%,#111510)}.manifesto-visual:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,13,10,.15),transparent),repeating-linear-gradient(90deg,transparent 0 65px,rgba(255,255,255,.08) 66px 67px)}.manifesto-visual:after{content:'AB';position:absolute;right:8%;bottom:-16%;font-family:var(--serif);font-size:clamp(180px,28vw,360px);color:rgba(234,229,215,.12);letter-spacing:-.12em}.manifesto-visual .frame{position:absolute;inset:12% 13%;border:1px solid rgba(235,231,219,.4)}.manifesto-visual .frame:before,.manifesto-visual .frame:after{content:'';position:absolute;background:rgba(235,231,219,.28)}.manifesto-visual .frame:before{width:1px;top:0;bottom:0;left:50%}.manifesto-visual .frame:after{height:1px;left:0;right:0;top:52%}.manifesto-copy p{font-size:13px;line-height:2;color:var(--muted);max-width:410px;margin:28px 0}.manifesto-copy .signature{font-family:var(--serif);font-size:26px;color:var(--gold);font-style:italic}.contact{background:#1c211b;padding:120px 7vw}.contact-inner{display:grid;grid-template-columns:1fr .8fr;gap:10vw;align-items:start}.contact h2{font-size:clamp(45px,6vw,84px);font-weight:300;letter-spacing:-.07em;line-height:1;margin:20px 0}.contact h2 em{font-family:var(--serif);color:var(--gold)}.contact p{font-size:13px;color:var(--muted);line-height:1.9;max-width:380px}.contact-card{border-top:1px solid var(--line);padding-top:25px}.contact-row{padding:18px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;font-size:12px}.contact-row span:first-child{color:var(--muted)}.footer{padding:25px 7vw;display:flex;justify-content:space-between;gap:20px;color:#777b70;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.reveal.visible{opacity:1;transform:none}.mobile-panel{display:none}
+@media(max-width:800px){.topbar{height:68px;padding:0 22px}.nav{display:none}.menu{display:block}.hero{min-height:760px;padding:0 25px 90px;align-items:flex-end}.hero:before{background:linear-gradient(0deg,rgba(12,14,12,.96),rgba(12,14,12,.48) 55%,rgba(12,14,12,.08)),linear-gradient(90deg,rgba(12,14,12,.1),transparent)}.hero-copy{max-width:100%;padding-bottom:25px}.hero h1{font-size:clamp(54px,14vw,82px);margin:20px 0}.hero p{font-size:12px;max-width:320px}.hero-meta{display:none}.scroll-note{left:25px;bottom:25px}.hero-actions{flex-wrap:wrap;margin-top:25px}.btn{padding:13px 16px;font-size:8px}.section{padding:90px 25px}.intro,.manifesto,.contact-inner{grid-template-columns:1fr;gap:35px}.intro h2,.section-title{font-size:48px}.intro-copy{font-size:12px}.build-section{min-height:440vh}.build-sticky{min-height:680px;height:100svh;grid-template-columns:1fr;grid-template-rows:auto 1fr;padding:105px 25px 45px;align-items:start}.build-text{max-width:100%}.build-text h2{font-size:47px;margin:15px 0}.build-text p{font-size:11px;max-width:310px}.stage-count{font-size:42px;margin-top:18px}.stage-progress{margin-top:15px}.model-wrap{height:47vh;min-height:310px;margin-top:0}.build-steps{top:12px;right:0}.model-hint{bottom:0}.services-head{display:block;margin-bottom:40px}.services-intro{margin-top:25px}.service-grid{grid-template-columns:1fr}.service-card,.service-card:not(:first-child){border-right:0;border-bottom:1px solid rgba(28,32,26,.2);padding:24px 0;min-height:0}.service-card h3{margin:16px 0 8px}.service-card p{margin-bottom:0}.manifesto-visual{height:390px;order:2}.manifesto-copy{order:1}.contact{padding:90px 25px}.contact h2{font-size:58px}.footer{padding:22px 25px;flex-direction:column}.mobile-panel{display:flex;position:fixed;z-index:40;inset:0;background:rgba(13,16,13,.97);backdrop-filter:blur(20px);padding:90px 28px 35px;flex-direction:column;gap:25px;transform:translateY(-105%);transition:transform .45s}.mobile-panel.open{transform:none}.mobile-panel a{font-size:28px;letter-spacing:-.05em}.panel-close{position:absolute;right:25px;top:22px;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style></head>
 <body>
-<header class="site-header">
- <a class="brand" href="#top"><span class="brand-symbol">A<b>.</b>B</span><span class="brand-name">ATELIER <strong>BÂTIMENT</strong></span></a>
- <nav class="nav"><a href="#process">Le processus</a><a href="#expertises">Expertises</a><a href="#contact">Contact</a></nav>
- <a class="header-cta" href="#contact">Parlons de votre projet ↗</a>
-</header>
-<section class="hero" id="top">
- <div class="hero-art">
-  <svg viewBox="0 0 1000 650" aria-hidden="true">
-   <defs><linearGradient id="heroGlass" x2="1" y2="1"><stop stop-color="#a9b7b1"/><stop offset="1" stop-color="#35433e"/></linearGradient></defs>
-   <path d="M110 390L465 190L900 235L545 445Z" fill="#252c27"/><path d="M110 390L545 445V590L110 530Z" fill="#b4ad9e"/><path d="M545 445L900 235V390L545 590Z" fill="#777b70"/>
-   <path d="M75 375L465 145L940 205L550 430Z" fill="#303833"/><path d="M75 375L550 430V450L75 395Z" fill="#c5bba9"/>
-   <path d="M165 420L330 440V515L165 495Z M355 444L500 460V535L355 518Z M590 432L850 292V370L590 520Z" fill="url(#heroGlass)" stroke="#d9d2c5" stroke-width="5"/>
-   <path d="M330 440V515M500 460V535M720 362V450" stroke="#ded6c8" stroke-width="6"/>
-   <path d="M80 545L550 605L920 420" stroke="#c6b89e" stroke-width="8" fill="none"/>
-  </svg>
- </div>
- <div class="hero-content"><div class="eyebrow">CONSTRUCTION · RÉNOVATION · ARCHITECTURE</div><h1>L’art de bâtir.<br><em>La vision de durer.</em></h1><p class="hero-copy">De la première ligne au dernier détail, nous transformons les idées en espaces à vivre — avec exigence, précision et sens du durable.</p><div class="hero-actions"><a class="primary-link" href="#process">Découvrir le processus <span>↓</span></a><a class="text-link" href="#expertises">Nos expertises ↗</a></div></div>
- <div class="hero-meta"><span>ATELIER BÂTIMENT · FRANCE</span><span class="scroll-cue"><span></span> DÉFILER POUR EXPLORER</span><span>CONSTRUIRE AVEC INTENTION</span></div>
-</section>
-<section class="intro"><div class="index">01 / NOTRE PHILOSOPHIE</div><div><h2>Un projet ne se résume pas à des murs.<br><span>Il commence par une intention.</span></h2><p class="intro-note">Nous croyons aux lieux qui ont du sens : une architecture lisible, des matériaux choisis avec soin et une réalisation pensée dans ses moindres détails.</p></div></section>
-
-<section class="build-section" id="process">
- <div class="build-stage">
-  <div class="build-sky"></div><div class="build-land"></div><div class="build-grid"></div>
-  <div class="build-top"><span>02 / DU PREMIER TRAIT À LA RÉALITÉ</span><span>ATELIER BÂTIMENT — PROCESSUS DE CONSTRUCTION</span></div>
-  <div class="build-copy"><div class="eyebrow" id="stageLabel">ÉTAPE 01 — LE TERRAIN</div><h2 id="stageTitle">Tout commence<br><em>par une vision.</em></h2><p id="stageText">Un terrain, une intention, les premières lignes d’un projet à imaginer.</p><div class="build-counter"><strong id="stageNumber">01</strong><span>/ 05 — ÉTAPES DU PROJET</span></div></div>
-  <div class="build-visual">
-   <svg id="house" viewBox="0 0 1100 700" role="img" aria-label="Maison contemporaine qui se construit progressivement">
-    <defs>
-     <linearGradient id="concrete" x2="0" y2="1"><stop stop-color="#d8d0c2"/><stop offset="1" stop-color="#918d83"/></linearGradient>
-     <linearGradient id="wallFront" x2="0" y2="1"><stop stop-color="#e3ded3"/><stop offset="1" stop-color="#b4aea1"/></linearGradient>
-     <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#aabebd"/><stop offset=".5" stop-color="#607a7c"/><stop offset="1" stop-color="#263b40"/></linearGradient>
-     <linearGradient id="pool" x2="1" y2="1"><stop stop-color="#9eb8b6"/><stop offset="1" stop-color="#405d5d"/></linearGradient>
-    </defs>
-    <!-- site survey / plot -->
-    <g class="house-part" data-start="0" data-end="1">
-     <path d="M85 540L590 600L1010 430" fill="none" stroke="#e4d3b5" stroke-width="3" stroke-dasharray="10 12"/>
-     <path d="M150 515V590M920 430V510M590 600V650" stroke="#d4c3a7" stroke-width="3"/>
-     <path d="M120 560L920 455" stroke="#f0e7d6" stroke-width="1" opacity=".5"/>
-    </g>
-    <!-- excavated foundation -->
-    <g class="house-part" data-start=".13" data-end="1">
-     <path d="M155 470L575 510L950 345L950 400L575 565L155 520Z" fill="#6c6b60"/>
-     <path d="M155 470L575 510L575 545L155 505Z" fill="#c2b7a5"/>
-     <path d="M575 510L950 345L950 380L575 545Z" fill="#898477"/>
-     <path d="M190 460L575 495L910 350" stroke="#d5c6ae" stroke-width="8" fill="none"/>
-    </g>
-    <!-- ground slab -->
-    <g class="house-part" data-start=".24" data-end="1">
-     <path d="M175 445L580 485L925 330L925 355L580 515L175 475Z" fill="#bcb3a3" stroke="#e4dacb" stroke-width="3"/>
-     <path d="M175 445L580 485L580 515L175 475Z" fill="#ded6c8"/>
-    </g>
-    <!-- structural columns and beams -->
-    <g class="house-part" data-start=".35" data-end="1" fill="none" stroke="#e1d8c8" stroke-width="17" stroke-linejoin="round">
-     <path d="M225 440V230L575 265V485M575 265L895 120V330"/>
-     <path d="M225 230L535 75L895 120L575 265"/>
-     <path d="M225 340L575 375L895 230"/>
-     <path d="M385 245V455M735 195V410"/>
-    </g>
-    <!-- solid walls -->
-    <g class="house-part" data-start=".49" data-end="1">
-     <path d="M225 230L575 265V485L225 440Z" fill="url(#wallFront)" stroke="#d8d0c2" stroke-width="3"/>
-     <path d="M575 265L895 120V330L575 485Z" fill="#8d9088" stroke="#d8d0c2" stroke-width="3"/>
-     <path d="M225 230L535 75L895 120L575 265Z" fill="#d4cbbb" stroke="#e6ddce" stroke-width="3"/>
-    </g>
-    <!-- dark roof planes -->
-    <g class="house-part" data-start=".63" data-end="1">
-     <path d="M170 220L535 35L955 90L580 270Z" fill="#343d39" stroke="#a9a89d" stroke-width="3"/>
-     <path d="M170 220L580 270V290L170 240Z" fill="#c4b8a5"/>
-     <path d="M580 270L955 90V112L580 292Z" fill="#252d29"/>
-     <path d="M270 218L535 85L855 125" fill="none" stroke="#717b72" stroke-width="3"/>
-    </g>
-    <!-- windows and sliding glass -->
-    <g class="house-part" data-start=".75" data-end="1">
-     <path d="M265 270L365 280V412L265 400Z" fill="url(#glass)" stroke="#f0e9dc" stroke-width="7"/>
-     <path d="M390 283L540 298V432L390 416Z" fill="url(#glass)" stroke="#f0e9dc" stroke-width="7"/>
-     <path d="M610 285L720 235V400L610 450Z" fill="url(#glass)" stroke="#eee5d7" stroke-width="7"/>
-     <path d="M740 225L865 167V325L740 383Z" fill="url(#glass)" stroke="#eee5d7" stroke-width="7"/>
-     <path d="M315 275V406M465 290V424M665 260V425M800 195V355" stroke="#e7dfd1" stroke-width="5"/>
-     <path d="M265 340L540 365M610 365L865 260" stroke="#c9d5d0" stroke-width="3" opacity=".65"/>
-    </g>
-    <!-- terrace, pool, landscaping -->
-    <g class="house-part" data-start=".88" data-end="1">
-     <path d="M130 490L580 540L980 365L980 395L580 575L130 525Z" fill="#b7aa95"/>
-     <path d="M175 530L510 570L510 600L175 560Z" fill="#8b8578"/>
-     <path d="M650 545L930 420L930 465L650 590Z" fill="url(#pool)" stroke="#c2d0c7" stroke-width="3"/>
-     <path d="M670 555L910 448" stroke="#d6e1d8" stroke-width="3" opacity=".7"/>
-     <g fill="#26392c"><circle cx="130" cy="450" r="42"/><circle cx="95" cy="478" r="30"/><circle cx="970" cy="360" r="48"/><circle cx="1010" cy="395" r="33"/><circle cx="730" cy="535" r="22"/></g>
-     <g fill="#c2a87e"><circle cx="180" cy="520" r="7"/><circle cx="940" cy="485" r="8"/><circle cx="875" cy="515" r="6"/></g>
-    </g>
-    <!-- final warm interior lights -->
-    <g class="house-part" data-start=".96" data-end="1" fill="#e6c58e" opacity=".85">
-     <path d="M400 330L525 343V400L400 387Z"/><path d="M760 260L845 220V300L760 340Z"/>
-    </g>
-   </svg>
-  </div>
-  <div class="build-label">UNE MAISON · CINQ TEMPS · UNE VISION</div>
-  <div class="build-controls"><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="step-dots" id="stepDots"><i class="active"></i><i></i><i></i><i></i><i></i></div><div class="scroll-label">FAITES DÉFILER POUR CONSTRUIRE ↓</div></div>
- </div>
-</section>
-<section class="after-build"><div class="index">03 / LE RÉSULTAT</div><div><h2>De l’idée à l’espace.<br><em>Du plan à la vie.</em></h2><p>Chaque étape compte. De la préparation du terrain aux finitions, nous accordons la même attention à la qualité d’exécution, à la cohérence des matériaux et au résultat final.</p></div></section>
-<section class="services" id="expertises"><div class="section-head"><div><div class="index">04 / NOS EXPERTISES</div><h2>Un savoir-faire<br><em>à chaque étape.</em></h2></div><p class="hero-copy">Un interlocuteur engagé, une vision claire et une attention constante portée au travail bien fait.</p></div>
- <div class="service"><small>01</small><h3>Construction</h3><p>Des fondations aux finitions, donner forme à des espaces conçus pour durer.</p><b>↗</b></div>
- <div class="service"><small>02</small><h3>Rénovation</h3><p>Révéler le potentiel d’un lieu et lui offrir une nouvelle perspective.</p><b>↗</b></div>
- <div class="service"><small>03</small><h3>Maîtrise d’œuvre</h3><p>Coordonner les étapes, les équipes et les exigences du projet.</p><b>↗</b></div>
- <div class="service"><small>04</small><h3>Aménagement</h3><p>Composer des volumes harmonieux et soigner chaque détail.</p><b>↗</b></div>
-</section>
-<section class="contact" id="contact"><div><div class="index">05 / VOTRE PROJET COMMENCE ICI</div><h2>Construisons<br><em>la suite.</em></h2></div><div><p>Vous avez un projet de construction ou de rénovation ? Parlons de vos idées et donnons-leur une forme concrète.</p><a href="mailto:bonjour@atelier-batiment.fr">PARLONS DE VOTRE PROJET ↗</a></div></section>
-<footer><span>ATELIER BÂTIMENT</span><span>CONSTRUIRE AVEC VISION · RÉALISER AVEC EXIGENCE</span><span>© 2026 · CONCEPT DE DÉMONSTRATION</span></footer>
-<script>
-(()=>{
- const section=document.querySelector('.build-section'),parts=[...document.querySelectorAll('.house-part')],label=document.getElementById('stageLabel'),title=document.getElementById('stageTitle'),desc=document.getElementById('stageText'),num=document.getElementById('stageNumber'),fill=document.getElementById('progressFill'),dots=[...document.querySelectorAll('#stepDots i')];
- const steps=[
-  ["ÉTAPE 01 — LE TERRAIN","Tout commence<br><em>par une vision.</em>","Le terrain est étudié, le projet prend ses premières mesures. Chaque ligne prépare la suite."],
-  ["ÉTAPE 02 — LES FONDATIONS","Ancrer le projet<br><em>dans le réel.</em>","Le terrassement et les fondations dessinent l’assise de la future construction."],
-  ["ÉTAPE 03 — LA STRUCTURE","Les volumes<br><em>prennent forme.</em>","Les poteaux, les poutres et les dalles font apparaître le volume architectural."],
-  ["ÉTAPE 04 — L’ENVELOPPE","La lumière entre.<br><em>Les espaces vivent.</em>","Les murs, la toiture et les baies vitrées révèlent la personnalité du bâtiment."],
-  ["ÉTAPE 05 — LES FINITIONS","Une vision devient<br><em>un lieu à vivre.</em>","Les terrasses, les aménagements et les derniers détails donnent vie à l’ensemble."]
- ];
- let active=-1,raf=false;
- function render(){
-  const rect=section.getBoundingClientRect(),range=section.offsetHeight-innerHeight;
-  const p=Math.max(0,Math.min(1,(-rect.top)/range));
-  parts.forEach(el=>{const a=Number(el.dataset.start),b=Number(el.dataset.end);let v=Math.max(0,Math.min(1,(p-a)/Math.max(.001,(b-a))));el.style.opacity=String(v);});
-  fill.style.width=(p*100)+'%';
-  const index=Math.min(4,Math.floor(p*5));
-  if(index!==active){active=index;label.textContent=steps[index][0];title.innerHTML=steps[index][1];desc.textContent=steps[index][2];num.textContent=String(index+1).padStart(2,'0');dots.forEach((d,i)=>d.classList.toggle('active',i===index));}
-  raf=false;
- }
- function onScroll(){if(!raf){requestAnimationFrame(render);raf=true}}
- addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',render);render();
-})();
-</script>
-</body></html>
+<header class="topbar" id="topbar"><a class="brand" href="#home">ATELIER BÂTIMENT<small>CONSTRUCTION · RÉNOVATION · ARCHITECTURE</small></a><nav class="nav"><a href="#vision">Notre vision</a><a href="#construction">Savoir-faire</a><a href="#services">Services</a><a href="#contact" class="nav-cta">Parlons de votre projet ↗</a></nav><button class="menu" id="menuOpen" aria-label="Ouvrir le menu">☰</button></header>
+<div class="mobile-panel" id="mobilePanel"><button class="panel-close" id="menuClose">×</button><a href="#vision">Notre vision</a><a href="#construction">Construction</a><a href="#services">Services</a><a href="#contact">Contact ↗</a></div>
+<main>
+<section class="hero" id="home"><div class="hero-grid"></div><div id="hero3d"></div><div class="hero-copy"><div class="eyebrow">Bâtir avec intention · Depuis la première ligne</div><h1>La matière<br>prend <em>forme.</em></h1><p>Nous imaginons et réalisons des lieux durables, précis et singuliers. De la fondation aux dernières finitions, chaque détail compte.</p><div class="hero-actions"><a class="btn primary" href="#construction">Découvrir notre approche <span>↘</span></a><a class="btn" href="#contact">Parler de votre projet <span>↗</span></a></div></div><div class="hero-meta">UNE VISION · UN GESTE · UN LIEU</div><div class="scroll-note">Défiler pour découvrir</div></section>
+<section class="section" id="vision"><div class="intro reveal"><div><div class="section-kicker">01 — Notre philosophie</div><h2>Construire, c'est<br>donner forme à <em>demain.</em></h2></div><div class="intro-copy"><strong>Une exigence à chaque étape.</strong>Un projet réussi ne se résume pas à une construction. C'est une vision partagée, des choix justes et une exécution maîtrisée. Nous réunissons conception, coordination et savoir-faire pour transformer une intention en lieu de vie.</div></div></section>
+<section class="build-section" id="construction"><div class="build-sticky"><div class="build-text"><div class="section-kicker">02 — Du sol au ciel</div><h2 id="stageTitle">Tout commence<br>par <em>une vision.</em></h2><p id="stageDesc">Avant le premier geste, il y a l'écoute du lieu, la lecture du terrain et la précision du projet.</p><div class="stage-count"><span id="stageNumber">01</span> <small>/ 05 — ÉTAPES DE RÉALISATION</small></div><div class="stage-label" id="stageLabel">L'INTENTION</div><div class="stage-progress"><span id="stageBar"></span></div><div class="stage-dots" id="stageDots"><i class="active"></i><i></i><i></i><i></i><i></i></div></div><div class="model-wrap"><div id="build3d"></div><div class="build-steps"><span class="active">01 · FONDATIONS</span><span>02 · STRUCTURE</span><span>03 · ENVELOPPE</span><span>04 · OUVERTURES</span><span>05 · FINITIONS</span></div><div class="model-hint">Glisser pour faire pivoter · Défiler pour construire</div></div></div></section>
+<section class="section services" id="services"><div class="services-head reveal"><div><div class="section-kicker">03 — Nos expertises</div><h2 class="section-title">Un projet.<br><em>Une maîtrise.</em></h2></div><p class="services-intro">Une approche globale, du premier échange à la remise des clés. Une attention constante portée à la qualité d'exécution.</p></div><div class="service-grid"><article class="service-card reveal"><div class="service-no">01</div><h3>Construction neuve</h3><p>Des fondations à la livraison, nous coordonnons chaque étape pour donner vie à un bâtiment cohérent, durable et pensé dans ses moindres détails.</p></article><article class="service-card reveal"><div class="service-no">02</div><h3>Rénovation & transformation</h3><p>Révéler le potentiel d'un lieu, repenser ses volumes et conjuguer le caractère de l'existant avec les usages d'aujourd'hui.</p></article><article class="service-card reveal"><div class="service-no">03</div><h3>Aménagement & finitions</h3><p>Matières, lumière, menuiseries et détails : les finitions donnent au projet son identité et sa qualité d'usage.</p></article></div></section>
+<section class="section manifesto"><div class="manifesto-visual reveal"><div class="frame"></div></div><div class="manifesto-copy reveal"><div class="section-kicker">04 — Notre engagement</div><h2 class="section-title">La précision<br>dans le geste.<br><em>La justesse</em><br>dans le résultat.</h2><p>Nous croyons aux lignes claires, aux matériaux sincères et aux ouvrages qui traversent le temps. Notre engagement : une relation transparente, une conduite rigoureuse et une exigence visible jusque dans les détails.</p><div class="signature">L'équipe Atelier Bâtiment</div></div></section>
+<section class="contact" id="contact"><div class="contact-inner"><div><div class="section-kicker">05 — Donnons forme à votre projet</div><h2>Et si l'on<br>construisait <em>ensemble ?</em></h2><p>Parlez-nous de votre idée. Nous prendrons le temps de comprendre le lieu, vos attentes et les possibilités qui s'offrent à vous.</p><a class="btn primary" href="mailto:bonjour@atelier-batiment.fr">Présenter mon projet ↗</a></div><div class="contact-card"><div class="contact-row"><span>Entreprise</span><strong>ATELIER BÂTIMENT</strong></div><div class="contact-row"><span>Expertises</span><strong>Construction · Rénovation</strong></div><div class="contact-row"><span>Échange</span><a href="mailto:bonjour@atelier-batiment.fr">bonjour@atelier-batiment.fr ↗</a></div><div class="contact-row"><span>Disponibilité</span><strong>Sur rendez-vous</strong></div><p style="font-size:10px;margin-top:22px">Coordonnées et zone d'intervention à personnaliser avant mise en ligne commerciale.</p></div></div></section>
+</main><footer class="footer"><span>© 2026 ATELIER BÂTIMENT</span><span>Construire avec intention.</span><a href="#home">Retour en haut ↑</a></footer>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js';
+const $=s=>document.querySelector(s);const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function makeTexture(base,grain=0.08){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');x.fillStyle=base;x.fillRect(0,0,256,256);for(let i=0;i<18000;i++){const v=Math.random()*255;x.fillStyle=`rgba(${v},${v},${v},${grain*Math.random()})`;x.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*2,1+Math.random()*2)}const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.colorSpace=THREE.SRGBColorSpace;return t}
+const mats={concrete:new THREE.MeshStandardMaterial({color:0xc5c2b7,map:makeTexture('#bcb9ae',.13),roughness:.86}),stone:new THREE.MeshStandardMaterial({color:0x777b70,map:makeTexture('#77796e',.12),roughness:.94}),wood:new THREE.MeshStandardMaterial({color:0x8a6847,map:makeTexture('#806044',.15),roughness:.7}),dark:new THREE.MeshStandardMaterial({color:0x202722,roughness:.48,metalness:.25}),glass:new THREE.MeshPhysicalMaterial({color:0x8ba6a4,roughness:.12,metalness:.15,transmission:.28,transparent:true,opacity:.78,thickness:.4,ior:1.35}),gold:new THREE.MeshStandardMaterial({color:0xb79a70,metalness:.55,roughness:.35}),grass:new THREE.MeshStandardMaterial({color:0x354333,roughness:1}),leaf:new THREE.MeshStandardMaterial({color:0x293d2d,roughness:1}),light:new THREE.MeshStandardMaterial({color:0xf1d9a8,emissive:0xe7b96f,emissiveIntensity:1.2})};
+function box(g,mat,x,y,z,w,h,d,rx=0,ry=0,rz=0){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.rotation.set(rx,ry,rz);m.castShadow=true;m.receiveShadow=true;g.add(m);return m}
+function cyl(g,mat,x,y,z,r1,r2,h,seg=12){const m=new THREE.Mesh(new THREE.CylinderGeometry(r1,r2,h,seg),mat);m.position.set(x,y,z);m.castShadow=true;g.add(m);return m}
+function tree(g,x,z,s=1){const t=new THREE.Group();t.position.set(x,0,z);g.add(t);cyl(t,mats.wood,0,.75*s,0,.09*s,.13*s,1.5*s,8);for(let i=0;i<5;i++){const geo=new THREE.IcosahedronGeometry((.45+Math.random()*.18)*s,1);const m=new THREE.Mesh(geo,mats.leaf);m.position.set((Math.random()-.5)*.45*s,(1.45+Math.random()*.8)*s,(Math.random()-.5)*.45*s);m.scale.y=1.3;m.castShadow=true;t.add(m)}}
+function createHouse(){const root=new THREE.Group();const phases=[];for(let i=0;i<5;i++){const g=new THREE.Group();root.add(g);phases.push(g)}
+// site + ground and foundation
+const site=phases[0];box(site,mats.grass,0,-.22,0,15,.25,11);box(site,mats.stone,0,.02,0,8.4,.28,5.9);box(site,mats.concrete,0,.25,0,7.9,.22,5.4);box(site,mats.dark,0,.38,0,7.7,.08,5.2);
+// structural base and walls
+const structure=phases[1];box(structure,mats.concrete,0,1.45,0,7.25,2.1,4.9);box(structure,mats.concrete,-.1,2.65,-.05,7.55,.22,5.15);box(structure,mats.dark,0,2.79,0,7.7,.08,5.3);
+// first floor facade, recesses, vertical piers
+for(const x of [-3.45,-1.75,0,1.75,3.45]){box(structure,mats.stone,x,1.55,-2.48,.13,1.95,.12);box(structure,mats.stone,x,1.55,2.48,.13,1.95,.12)}
+// upper volume and cantilever
+const envelope=phases[2];box(envelope,mats.concrete,.35,3.85,-.05,6.85,2.05,4.45);box(envelope,mats.wood,-3.15,3.85,-.05,.42,2.05,4.5);box(envelope,mats.stone,.35,4.94,-.05,7.2,.18,4.75);box(envelope,mats.dark,.35,5.08,-.05,7.35,.1,4.9);
+// roof slab + parapet
+box(envelope,mats.dark,.35,5.25,-.05,7.55,.2,5.05);box(envelope,mats.stone,.35,5.38,-2.53,7.55,.12,.12);box(envelope,mats.stone,.35,5.38,2.43,7.55,.12,.12);box(envelope,mats.stone,-3.42,5.38,-.05,.12,.12,5);box(envelope,mats.stone,4.12,5.38,-.05,.12,.12,5);
+// window/door assemblies helper
+const glazing=phases[3];function windowFront(g,x,y,z,w,h){box(g,mats.dark,x,y,z,w+.16,h+.16,.1);box(g,mats.glass,x,y,z-.065,w,h,.035);box(g,mats.dark,x,y,z-.1,.045,h,.07);box(g,mats.dark,x,y,z-.1,w,.045,.07);box(g,mats.dark,x,y,z-.1,.035,h,.07)}
+// front ground floor glazing across 3 bays
+windowFront(glazing,-2.25,1.38,-2.53,1.42,1.45);windowFront(glazing,-.45,1.38,-2.53,1.62,1.45);windowFront(glazing,1.55,1.38,-2.53,2.05,1.45);windowFront(glazing,3.0,1.38,-2.53,.65,1.45);
+// upper front windows
+windowFront(glazing,-1.65,3.85,-2.31,1.55,1.25);windowFront(glazing,.35,3.85,-2.31,1.45,1.25);windowFront(glazing,2.35,3.85,-2.31,1.5,1.25);
+// side glazing panels
+for(let z=-1.65;z<=1.6;z+=1.55){box(glazing,mats.dark,3.79,1.55,z,.1,1.5,1.22);box(glazing,mats.glass,3.73,1.55,z,.035,1.35,1.08)}
+// frames, balcony and balustrade
+for(let x=-2.5;x<=3.1;x+=.22)box(glazing,mats.wood,x,3.9,-2.38,.055,1.4,.09);
+box(glazing,mats.concrete,.35,2.83,-3.15,7.7,.18,1.05);box(glazing,mats.dark,.35,2.95,-3.15,7.72,.05,1.08);box(glazing,mats.gold,.35,3.35,-3.67,7.65,.055,.055);for(let x=-3.4;x<=4.1;x+=.38)box(glazing,mats.glass,x,3.15,-3.67,.025,.42,.025);
+// details / finishes
+const finish=phases[4];for(let x=-3.05;x<=-2.0;x+=.16)box(finish,mats.wood,x,1.4,2.53,.07,1.8,.12);for(let x=2.7;x<=3.65;x+=.16)box(finish,mats.wood,x,1.4,2.53,.07,1.8,.12);
+// warm interior lighting panels
+for(const x of [-2.25,-.45,1.55,3]){const p=box(finish,mats.light,x,.75,-2.585,.22,.025,.025);p.material=mats.light}
+// terrace, steps, pool and paths
+box(finish,mats.stone,-.5,.03,-5.0,10,.12,2.2);box(finish,mats.glass,-.5,.02,-6.5,5.5,.1,1.6);box(finish,mats.dark,-.5,.085,-6.5,5.55,.035,1.65);for(let i=0;i<3;i++)box(finish,mats.concrete,-.5,.13+i*.09,-3.95-i*.32,4.2,.12,.28);
+for(let x=-6;x<6;x+=1.3)box(finish,mats.stone,x,.015,-3.4,.72,.035,.55);
+// garden beds and trees
+for(const [x,z,w,d] of [[-5,1,1.8,3],[5,1,1.8,3],[-4,-4,2,1],[4,-4,2,1]])box(finish,mats.grass,x,.02,z,w,.12,d);
+tree(finish,-5.3,-1.2,1.2);tree(finish,5.1,-1.5,1.35);tree(finish,-4.8,3.2,.9);tree(finish,4.9,3.2,1.05);
+// low garden lights
+for(const [x,z] of [[-4,-4],[3.9,-4],[-5,2],[5,2]]){cyl(finish,mats.dark,x,.25,z,.07,.07,.5);cyl(finish,mats.light,x,.52,z,.09,.09,.08)}
+// outdoor furniture
+box(finish,mats.wood,-1.8,.48,-4.6,1.6,.12,.55);for(const x of [-2.45,-1.15])for(const z of [-4.8,-4.4])box(finish,mats.dark,x,.22,z,.07,.48,.07);
+return {root,phases}}
+function setupScene(id,hero=false){const host=document.getElementById(id);const scene=new THREE.Scene();scene.background=null;scene.fog=new THREE.Fog(0x151914,hero?18:16,hero?36:30);const camera=new THREE.PerspectiveCamera(hero?34:38,1,.1,100);camera.position.set(hero?11:10,hero?8:7,hero?14:13);const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,hero?1.5:1.7));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;host.appendChild(renderer.domElement);scene.add(new THREE.HemisphereLight(0xdce7e4,0x34392f,hero?2.1:1.8));const sun=new THREE.DirectionalLight(0xffe0b4,hero?3.3:3.0);sun.position.set(-7,12,8);sun.castShadow=true;sun.shadow.mapSize.set(1536,1536);sun.shadow.camera.left=-14;sun.shadow.camera.right=14;sun.shadow.camera.top=14;sun.shadow.camera.bottom=-14;scene.add(sun);const fill=new THREE.DirectionalLight(0x9bb4c1,1.5);fill.position.set(8,6,-8);scene.add(fill);const model=createHouse();scene.add(model.root);model.root.position.y=-.05;model.root.scale.setScalar(hero?.82:.92);const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.minDistance=8;controls.maxDistance=24;controls.minPolarAngle=.48;controls.maxPolarAngle=1.38;controls.target.set(0,2.2,0);controls.autoRotate=hero;controls.autoRotateSpeed=.32;controls.enabled=true;function resize(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(host);resize();let active=4;function setPhase(p){active=Math.max(0,Math.min(4,p));model.phases.forEach((g,i)=>{g.visible=i<=active});}setPhase(hero?4:0);let raf;function animate(){raf=requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();return {scene,camera,renderer,controls,model,setPhase,host}}
+let heroScene,buildScene;try{heroScene=setupScene('hero3d',true);buildScene=setupScene('build3d',false)}catch(e){console.error('3D initialisation failed',e);document.body.classList.add('no-webgl')}
+const stages=[['Tout commence par|une vision.','Avant le premier geste, il y a l’écoute du lieu, la lecture du terrain et la précision du projet.','L’INTENTION'],['Ancrer le projet|dans le réel.','Le terrain prend forme. Les fondations dessinent l’assise et garantissent la stabilité de l’ensemble.','LES FONDATIONS'],['La structure|prend place.','Les volumes s’élèvent. La structure révèle les proportions, les lignes et les espaces du futur bâtiment.','LA STRUCTURE'],['La lumière|entre.','Les murs, les façades et les ouvertures composent l’enveloppe et donnent son caractère au lieu.','L’ENVELOPPE'],['Une vision devient|un lieu à vivre.','Les matières, les aménagements et les derniers détails donnent vie à l’ensemble.','LES FINITIONS']];let current=0;function updateBuild(){const sec=$('#construction');const r=sec.getBoundingClientRect();const total=sec.offsetHeight-innerHeight;const progress=Math.max(0,Math.min(1,-r.top/total));const p=progress*4;const idx=Math.min(4,Math.floor(p+.00001));if(idx!==current){current=idx;const [title,desc,label]=stages[idx];$('#stageTitle').innerHTML=title.replace('|','<br><em>')+'</em>';$('#stageDesc').textContent=desc;$('#stageLabel').textContent=label;$('#stageNumber').textContent=String(idx+1).padStart(2,'0');document.querySelectorAll('#stageDots i').forEach((d,i)=>d.classList.toggle('active',i===idx));document.querySelectorAll('.build-steps span').forEach((d,i)=>d.classList.toggle('active',i===idx));if(buildScene)buildScene.setPhase(idx)}$('#stageBar').style.width=((p-idx)*100)+'%';if(idx===4)$('#stageBar').style.width='100%'}
+let ticking=false;function onScroll(){if(!ticking){requestAnimationFrame(()=>{updateBuild();$('#topbar').classList.toggle('scrolled',scrollY>30);ticking=false});ticking=true}}addEventListener('scroll',onScroll,{passive:true});updateBuild();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));$('#menuOpen').addEventListener('click',()=>$('#mobilePanel').classList.add('open'));$('#menuClose').addEventListener('click',()=>$('#mobilePanel').classList.remove('open'));document.querySelectorAll('.mobile-panel a').forEach(a=>a.addEventListener('click',()=>$('#mobilePanel').classList.remove('open')));
+if(reduced){if(heroScene)heroScene.controls.autoRotate=false}
+</script></body></html>
